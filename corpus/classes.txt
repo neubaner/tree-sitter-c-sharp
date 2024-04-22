@@ -661,3 +661,90 @@ file class A {}
     (modifier)
     name: (identifier)
     body: (declaration_list)))
+
+================================================================================
+Class with primary constructor
+================================================================================
+
+class Person(string firstName, string lastName) {}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        type: (predefined_type)
+        name: (identifier))
+      (parameter
+        type: (predefined_type)
+        name: (identifier)))
+    body: (declaration_list)))
+
+================================================================================
+Class inheritance with primary constructor
+================================================================================
+
+class Teacher(string firstName, string lastName, string subject) : Person(firstName, lastName) {}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        type: (predefined_type)
+        name: (identifier))
+      (parameter
+        type: (predefined_type)
+        name: (identifier))
+      (parameter
+        type: (predefined_type)
+        name: (identifier)))
+    bases: (base_list
+      (primary_constructor_base_type
+        type: (identifier)
+        (argument_list
+          (argument
+            (identifier))
+          (argument
+            (identifier)))))
+    body: (declaration_list)))
+
+================================================================================
+Class inheritance with primary constructor overload and interfaces
+================================================================================
+
+class Teacher(string firstName, string lastName, string subject) : Person(firstName, lastName), Ns.I1, I2;
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        type: (predefined_type)
+        name: (identifier))
+      (parameter
+        type: (predefined_type)
+        name: (identifier))
+      (parameter
+        type: (predefined_type)
+        name: (identifier)))
+    bases: (base_list
+      (primary_constructor_base_type
+        type: (identifier)
+        (argument_list
+          (argument
+            (identifier))
+          (argument
+            (identifier))))
+      (qualified_name
+        qualifier: (identifier)
+        name: (identifier))
+      (identifier))
+    body: (declaration_list)))
+
